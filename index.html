@@ -3,26 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ノッティンガム観光小ネタ集 〜友達がアルティメットで来てるから作ってみた〜</title>
+<title>ノッティンガム観光小ネタ集 完全版 | Nottingham Trivia Guide</title>
+<meta name="description" content="イギリス・ノッティンガムを訪れる人のための雑学・観光小ネタ完全ガイド。ロビン・フッド伝説、歴史、グルメ、夜の街、実用情報までまとめました。">
 <style>
   :root {
     --green: #1b4332;
+    --green-light: #2d6a4f;
     --gold: #d4a017;
     --red: #7b1e1e;
     --cream: #f5efe0;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-family: "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
     background: var(--cream);
-    color: #2b2b2b;
-    line-height: 1.7;
+    color: var(--ink);
+    line-height: 1.75;
   }
-  header {
-    background: linear-gradient(135deg, var(--green), #0d2818);
+
+  /* ---------- Top nav ---------- */
+  nav.toc {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(27, 67, 50, 0.96);
+    backdrop-filter: blur(6px);
     color: var(--cream);
-    padding: 60px 20px 50px;
+    padding: 10px 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  nav.toc a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.82rem;
+    padding: 6px 12px;
+    border-radius: 16px;
+    margin-right: 4px;
+    display: inline-block;
+    transition: background 0.15s;
+  }
+  nav.toc a:hover { background: rgba(255,255,255,0.15); }
+
+  /* ---------- Header ---------- */
+  header {
+    background: linear-gradient(135deg, var(--green), #0d2818 75%);
+    color: var(--cream);
+    padding: 64px 20px 56px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -30,206 +62,412 @@
   header::after {
     content: "🏹";
     position: absolute;
-    font-size: 200px;
-    opacity: 0.08;
+    font-size: 220px;
+    opacity: 0.07;
     right: -30px;
-    top: -30px;
+    top: -40px;
   }
-  header h1 {
-    font-size: 2.2rem;
-    margin: 0 0 10px;
-    letter-spacing: 1px;
+  header::before {
+    content: "🏰";
+    position: absolute;
+    font-size: 180px;
+    opacity: 0.06;
+    left: -40px;
+    bottom: -50px;
   }
-  header p {
-    font-size: 1rem;
-    opacity: 0.85;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .badge {
+  .eyebrow {
     display: inline-block;
     background: var(--gold);
     color: #2b2b2b;
-    padding: 4px 14px;
+    padding: 4px 16px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: bold;
-    margin-top: 16px;
+    letter-spacing: 0.5px;
   }
-  main {
-    max-width: 760px;
+  header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    margin: 18px 0 12px;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  header p.lead {
+    font-size: 1.02rem;
+    opacity: 0.9;
+    max-width: 640px;
     margin: 0 auto;
-    padding: 30px 20px 80px;
+    position: relative;
   }
-  .card {
-    background: white;
-    border-radius: 14px;
-    padding: 26px 28px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
-    border-left: 6px solid var(--green);
-  }
-  .card.spicy {
-    border-left-color: var(--red);
-    background: #fff6f3;
-  }
-  .card h2 {
-    margin-top: 0;
-    font-size: 1.25rem;
-    color: var(--green);
+  .stats-row {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+    position: relative;
   }
-  .card.spicy h2 { color: var(--red); }
-  .tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    background: var(--green);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-left: 4px;
-    vertical-align: middle;
-  }
-  .tag.adult {
-    background: var(--red);
-  }
-  .card p { margin: 8px 0; }
-  .card .note {
-    font-size: 0.85rem;
-    color: #777;
-    border-top: 1px dashed #ddd;
-    margin-top: 14px;
-    padding-top: 10px;
-  }
-  section.intro {
+  .stats-row div {
     text-align: center;
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 0.95rem;
   }
+  .stats-row .num {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+  }
+  .stats-row .label {
+    font-size: 0.72rem;
+    opacity: 0.8;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 36px 20px 80px;
+  }
+
+  section.intro-note {
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    border: 1px dashed #ccc;
+  }
+
   .section-title {
     text-align: center;
-    margin: 50px 0 20px;
-    font-size: 1.4rem;
+    margin: 56px 0 8px;
+    font-size: 1.5rem;
     color: var(--green);
     position: relative;
+    scroll-margin-top: 70px;
   }
   .section-title::before, .section-title::after {
     content: "";
     display: inline-block;
-    width: 40px;
+    width: 36px;
     height: 2px;
     background: var(--gold);
     vertical-align: middle;
     margin: 0 12px;
   }
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 22px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    border-left: 6px solid var(--green);
+  }
+  .card.spicy { border-left-color: var(--red); background: #fff6f3; }
+  .card.gold { border-left-color: var(--gold); }
+  .card h3 {
+    margin-top: 0;
+    font-size: 1.15rem;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .card.spicy h3 { color: var(--red); }
+  .card.gold h3 { color: #8a6d00; }
+  .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    background: var(--green);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: normal;
+  }
+  .tag.adult { background: var(--red); }
+  .tag.useful { background: #2563a8; }
+  .card p { margin: 8px 0; }
+  .card .note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px dashed #ddd;
+    margin-top: 14px;
+    padding-top: 10px;
+  }
+  .card .src {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 6px;
+  }
+
+  /* Quick reference table */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    margin-bottom: 22px;
+    font-size: 0.9rem;
+  }
+  .ref-table th, .ref-table td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+  }
+  .ref-table th {
+    background: var(--green);
+    color: var(--cream);
+    font-weight: normal;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table tr:nth-child(even) td { background: #faf8f2; }
+
+  blockquote.fact {
+    background: linear-gradient(135deg, #fff, #faf3e0);
+    border-left: 6px solid var(--gold);
+    margin: 22px 0;
+    padding: 18px 22px;
+    border-radius: 10px;
+    font-style: normal;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+  blockquote.fact .label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #8a6d00;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  .grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 600px) {
+    .grid-two { grid-template-columns: 1fr; }
+  }
+
+  .toc-back {
+    text-align: center;
+    margin-top: 8px;
+  }
+  .toc-back a {
+    font-size: 0.78rem;
+    color: var(--green-light);
+    text-decoration: none;
+  }
+  .toc-back a:hover { text-decoration: underline; }
+
   footer {
     text-align: center;
-    padding: 30px;
+    padding: 36px 20px;
     background: var(--green);
     color: var(--cream);
     font-size: 0.85rem;
   }
-  .emoji-big { font-size: 1.4rem; }
+  footer .small {
+    opacity: 0.7;
+    font-size: 0.72rem;
+    margin-top: 10px;
+  }
 </style>
 </head>
 <body>
 
+<nav class="toc">
+  <a href="#robinhood">🏹 ロビン・フッド</a>
+  <a href="#drink">🍺 飲み・夜</a>
+  <a href="#history">🏰 街・歴史</a>
+  <a href="#food">🍽 グルメ</a>
+  <a href="#practical">🧭 実用情報</a>
+  <a href="#extra">🎡 番外編</a>
+</nav>
+
 <header>
-  <div class="badge">ULTIMATE観戦のついでに使えるノッティンガム雑学集</div>
-  <h1>ノッティンガムに来たらコレ言うとけ 📣</h1>
-  <p>観光地は正直そんなに多くない街、ノッティンガム。でもロビン・フッドの故郷だけあって小ネタは無限にある。
-  友達の応援の合間に話のネタにしてや〜。</p>
+  <span class="eyebrow">ULTIMATE観戦のお供に｜完全版トリビアガイド</span>
+  <h1>ノッティンガム観光小ネタ集</h1>
+  <p class="lead">観光地は決して多くない街、ノッティンガム。でもロビン・フッドの故郷だけあって雑学のネタは尽きない。
+  歴史・グルメ・夜の街・実用情報まで一通りまとめたので、観戦の合間の話のネタにどうぞ。</p>
+  <div class="stats-row">
+    <div><div class="num">800+</div><div class="label">年の歴史（City of Caves）</div></div>
+    <div><div class="num">2</div><div class="label">主要大学</div></div>
+    <div><div class="num">1189</div><div class="label">年創業を謳う最古パブ</div></div>
+    <div><div class="num">700+</div><div class="label">年続くグース・フェア</div></div>
+  </div>
 </header>
 
 <main>
 
-<section class="intro">
-  <p>※「アダルト」タグの話題は、酒場や下ネタ寄りの小ネタです。TPOは選んで使うように😏</p>
+<section class="intro-note">
+  💡 「アダルト」「酒場ネタ」タグの話題は下ネタ・夜の街寄りの小ネタです。TPOを選んで使ってください。
 </section>
 
-<h2 class="section-title">🏹 ロビン・フッド関連</h2>
+<!-- ===================== ROBIN HOOD ===================== -->
+<h2 class="section-title" id="robinhood">🏹 ロビン・フッド関連</h2>
+<p class="section-sub">ノッティンガムと言えばコレ。鉄板ネタ集</p>
 
 <div class="card">
-  <h2>ロビン・フッドはここの人（伝説上は）<span class="tag">定番</span></h2>
-  <p>義賊ロビン・フッドの伝説の舞台がここノッティンガム。街の中心にはロビン・フッドの銅像があって、観光客が必ず弓を構えたポーズで写真を撮るスポットになってる。</p>
-  <p class="note">ノッティンガム城のすぐ外にあるから、試合の合間にサクッと寄れる。</p>
+  <h3>ロビン・フッドはここの人（伝説上は）<span class="tag">定番</span></h3>
+  <p>義賊ロビン・フッドの伝説の舞台がここノッティンガム。街の中心、ノッティンガム城のすぐ外にはロビン・フッドの銅像があり、観光客が必ず弓を構えたポーズで写真を撮るスポットになっている。</p>
+  <p class="note">試合会場からアクセスしやすければ、観戦の合間にサクッと寄れる定番フォトスポット。</p>
 </div>
 
 <div class="card">
-  <h2>シャーウッドの森は意外と遠い</h2>
-  <p>ロビン・フッドが隠れ住んだとされる「シャーウッドの森」は市街地からバスや車で1時間弱。樹齢800年超えの「メジャーオーク」という巨木が今も立ってて、これがロビン・フッドの隠れ家だったという伝説あり。時間に余裕があれば行く価値あり。</p>
+  <h3>シャーウッドの森は意外と遠い</h3>
+  <p>ロビン・フッドが隠れ住んだとされる「シャーウッドの森（Sherwood Forest）」は市街地からバスや車で1時間弱。樹齢800〜1000年とも言われる巨木「メジャーオーク（Major Oak）」が今も立っており、これがロビン・フッドの隠れ家だったという伝説がある。</p>
+  <p class="note">片道1時間かかるので、丸一日の予定が取れる日向け。</p>
 </div>
 
 <div class="card">
-  <h2>「保安官」はずっと悪役</h2>
-  <p>ノッティンガムの州長官（Sheriff of Nottingham）は伝説の中でずっとロビン・フッドの宿敵として描かれてる。今でも実在の儀礼職として「ノッティンガム州長官」が選出されていて、ボードゲームにもなってる（"Sheriff of Nottingham"というカードゲーム、密輸品を申告するやつで地味に名作）。</p>
+  <h3>「保安官」はずっと悪役</h3>
+  <p>ノッティンガムの州長官（Sheriff of Nottingham）は伝説の中でずっとロビン・フッドの宿敵として描かれている。今でも実在の儀礼職として「ノッティンガム州長官」が選出されており、テーマ性を借りたカードゲーム「Sheriff of Nottingham」（密輸品を申告するゲーム）も発売されていて地味な名作。</p>
 </div>
 
-<h2 class="section-title">🍺 飲み・夜のノッティンガム</h2>
+<blockquote class="fact">
+  <span class="label">TRIVIA</span>
+  ロビン・フッドが実在したかどうかは歴史的に証明されておらず、複数の伝承・人物像が合体して今の物語になったとする説が有力。つまり「実在は不明、でも街のアイデンティティは揺るがない」というのがノッティンガム流。
+</blockquote>
+
+<!-- ===================== DRINK ===================== -->
+<h2 class="section-title" id="drink">🍺 飲み・夜のノッティンガム</h2>
+<p class="section-sub">酒場ネタ・夜の街情報（TPO注意）</p>
 
 <div class="card spicy">
-  <h2>「世界最古のパブ」を自称する店がある <span class="tag adult">酒場ネタ</span></h2>
-  <p><strong>Ye Olde Trip to Jerusalem</strong>というパブは1189年創業を主張していて、「イギリスで最も古いパブ」を名乗ってる（異論は他の街からもあるけど）。ノッティンガム城の岩盤を掘った洞窟がそのままバーになってて雰囲気は抜群。試合終わりの一杯にぴったり。</p>
-  <p class="note">十字軍がエルサレムへ向かう前に立ち寄った酒場、という伝説からこの名前。</p>
+  <h3>「世界最古のパブ」を自称する店がある <span class="tag adult">酒場ネタ</span></h3>
+  <p><strong>Ye Olde Trip to Jerusalem</strong>というパブは1189年創業を主張しており、「イギリス最古のパブ」を名乗っている（同様の主張をする店は他都市にもあり、真偽には諸説あり）。ノッティンガム城の岩盤をくり抜いた洞窟がそのままバー空間になっていて、雰囲気は一見の価値あり。</p>
+  <p class="note">十字軍がエルサレムへ向かう前に立ち寄った酒場、という伝説からこの店名がついた。</p>
 </div>
 
 <div class="card spicy">
-  <h2>ノッティンガムは「英国一治安が悪い」と言われたことがある <span class="tag adult">小ネタ</span></h2>
-  <p>2000年代に犯罪統計で「ガンクライム・キャピタル（銃犯罪首都）」と呼ばれて悪名が立ったことがある街。今は再開発が進んでかなり改善してるので、これは「昔こう言われてたらしいで」レベルの笑い話として使うのが吉。本人の前で真顔で言うとちょっと気まずいかも。</p>
+  <h3>ノッティンガムは昔「英国一治安が悪い」と言われたことがある <span class="tag adult">小ネタ</span></h3>
+  <p>2000年代に犯罪統計で「ガンクライム・キャピタル（銃犯罪首都）」と報道され、悪名が立った時期がある街。現在は再開発・治安対策が進み大きく改善している。あくまで「昔こう言われてたらしいで」レベルの笑い話として使うのが無難。本人の地元愛が強い場合は気をつけて。</p>
 </div>
 
 <div class="card spicy">
-  <h2>夜の街として有名（学生都市あるある）<span class="tag adult">アダルト寄り</span></h2>
-  <p>ノッティンガムには2つの大きな大学（ノッティンガム大学・ノッティンガム・トレント大学）があって学生の街でもある。Hockley地区はバー・クラブが密集していて週末の夜は大盛り上がり。良くも悪くも「酔っ払いの街」イメージもあるので、アルティメットの打ち上げにはちょうどいい雰囲気かも。</p>
+  <h3>夜の街として有名（学生都市あるある）<span class="tag adult">アダルト寄り</span></h3>
+  <p>ノッティンガムには2つの大規模大学（University of Nottingham／Nottingham Trent University）があり、学生人口の多い街でもある。バー・クラブが密集する <strong>Hockley地区</strong> は週末の夜は大盛り上がり。良くも悪くも「飲みの街」というイメージもあり、打ち上げにはちょうどいい雰囲気。</p>
 </div>
 
-<h2 class="section-title">🏰 街・歴史の小ネタ</h2>
+<table class="ref-table">
+  <tr><th>エリア名</th><th>特徴</th></tr>
+  <tr><td>Hockley</td><td>バー・クラブ密集、夜遊びの中心地</td></tr>
+  <tr><td>Lace Market</td><td>おしゃれなレストラン・ワインバーが多い</td></tr>
+  <tr><td>Old Market Square</td><td>市の中心広場。年中イベントが開催される</td></tr>
+  <tr><td>Sneinton Market</td><td>地元クリエイターのショップやカフェが集まる</td></tr>
+</table>
+
+<!-- ===================== HISTORY ===================== -->
+<h2 class="section-title" id="history">🏰 街・歴史の小ネタ</h2>
+<p class="section-sub">ちょっと知的に見せたい時用</p>
+
+<div class="grid-two">
+  <div class="card">
+    <h3>「ケーブ・シティ」の異名</h3>
+    <p>地下には砂岩をくり抜いた人工洞窟「City of Caves」が800以上存在。中世から防空壕、貯蔵庫、なめし革工場まで様々な用途で使われてきた。ガイドツアーで地下探検が可能。</p>
+  </div>
+  <div class="card">
+    <h3>レース（Lace）の街</h3>
+    <p>19世紀、レース（編み物）産業で世界的に栄えた街。「Lace Market」という地区名が今も残り、現在はおしゃれなバー・レストランが集まるエリアに変貌している。</p>
+  </div>
+  <div class="card">
+    <h3>D.H.ロレンスの出身地</h3>
+    <p>『チャタレイ夫人の恋人』で知られる作家D.H.ロレンスは、ノッティンガム近郊の炭鉱町イーストウッド出身。あの過激な描写の小説のルーツがこの地域にあると思うとちょっと面白い豆知識。</p>
+  </div>
+  <div class="card">
+    <h3>ノッティンガム城に「天守閣」はない</h3>
+    <p>「ノッティンガム城」と聞いて想像する中世風の城はほぼ現存しておらず、現在の建物は17世紀に建て直された公爵の館（カントリーハウス様式）。中世の堅牢な城を期待すると拍子抜けするので先に知っておくと親切。</p>
+  </div>
+</div>
+
+<div class="card gold">
+  <h3>ボーツ（Boots）創業の地</h3>
+  <p>イギリス全土にあるドラッグストアチェーン「Boots」はノッティンガム発祥。創業者ジェシー・ブートはここで小さな薬局を開業し、今や英国民の生活インフラと言える存在に成長した。市内に本店・記念碑あり。お土産探しにも便利。</p>
+</div>
 
 <div class="card">
-  <h2>「ケーブ・シティ」の異名</h2>
-  <p>ノッティンガムの地下には砂岩をくり抜いた人工洞窟（City of Caves）が800以上もある。中世から防空壕、貯蔵庫、なめし革工場まで様々な用途で使われてた。ガイドツアーで地下探検できる珍しいスポット。</p>
+  <h3>かつて「レース」と「自転車」の世界都市だった</h3>
+  <p>レース産業に加えて、自転車メーカー <strong>Raleigh（ラリー）</strong> もノッティンガム発祥。1900年代初頭には世界最大の自転車メーカーとして名を馳せた。今でも市内に名残のあるストリート名や記念展示が見られる。</p>
+</div>
+
+<!-- ===================== FOOD ===================== -->
+<h2 class="section-title" id="food">🍽 グルメの小ネタ</h2>
+<p class="section-sub">話のネタにも実食にも使える</p>
+
+<div class="card">
+  <h3>"Nottingham Goose Fair Cob" など、ローカルパン文化</h3>
+  <p>イギリス中部らしく、丸いパン「コブ（Cob）」がサンドイッチの主流。地元のベーカリーやマーケットで具沢山のコブサンドを買って公園で食べるのが地元民流のランチ。</p>
 </div>
 
 <div class="card">
-  <h2>レース（Lace）の街</h2>
-  <p>19世紀にレース産業で世界的に栄えた街で、「Lace Market（レース・マーケット）」という地区名がそのまま残ってる。今はおしゃれなバーやレストランが集まるエリアに変身してる。</p>
+  <h3>カレー激戦区でもある</h3>
+  <p>イギリスはインド系移民の影響で本格カレー店が非常に多い国だが、ノッティンガムも例外ではなく、市内中心部にはカレーハウスが点在。試合で疲れた体にスパイスはよく効く、という話のネタにどうぞ。</p>
 </div>
 
 <div class="card">
-  <h2>D.H.ロレンスの出身地</h2>
-  <p>『チャタレイ夫人の恋人』で有名な作家D.H.ロレンスはノッティンガム近郊の炭鉱町イーストウッドの出身。あの過激な性描写小説のルーツがこのあたりにあると思うと、ちょっとニヤッとできる豆知識。</p>
+  <h3>Sunday Roast はイギリスの「実家の味」</h3>
+  <p>日曜日限定で提供される「サンデーロースト」（ロースト肉・ヨークシャープディング・グレイビーソースの定食）はイギリス全土の伝統食だが、ノッティンガムのパブでも当然提供されている。日曜開催の試合がある場合は要チェック。</p>
+</div>
+
+<!-- ===================== PRACTICAL ===================== -->
+<h2 class="section-title" id="practical">🧭 実用情報</h2>
+<p class="section-sub">地味に役立つやつ</p>
+
+<table class="ref-table">
+  <tr><th>項目</th><th>内容</th></tr>
+  <tr><td>最寄り空港</td><td>East Midlands Airport（車・バスで約30〜40分）</td></tr>
+  <tr><td>ロンドンからのアクセス</td><td>電車（St Pancras発）で約1時間50分</td></tr>
+  <tr><td>市内交通</td><td>路面電車（NET Tram）とバスが充実。Contactless決済対応</td></tr>
+  <tr><td>通貨</td><td>英ポンド（£）。多くの店でカード払い・タッチ決済が主流</td></tr>
+  <tr><td>気候の目安</td><td>夏でも肌寒い日があるので羽織りものは必須</td></tr>
+</table>
+
+<div class="card">
+  <h3>「ノッティンガムシャー」と「ノッティンガム」は別物</h3>
+  <p>「ノッティンガム（Nottingham）」は市の名称、「ノッティンガムシャー（Nottinghamshire）」はそれを含む州（county）の名称。会話で混同すると地元の人に軽く訂正されることがあるので、地味に覚えておくと印象が良い。<span class="tag useful">実用</span></p>
 </div>
 
 <div class="card">
-  <h2>ノッティンガム城には実は「天守閣」がない</h2>
-  <p>「ノッティンガム城」と聞いて想像する中世のお城は実はほぼ残ってなくて、現在の建物は17世紀に建て直された公爵の館（カントリーハウス風）。中世の城を期待して行くとちょっと拍子抜けするので先に言っておくと親切。</p>
+  <h3>方言にちょっとクセがある</h3>
+  <p>イーストミッドランズ訛りは独特のイントネーションを持つ。標準的なイギリス英語の発音に慣れていても、最初は聞き取りに苦戦するかもしれない。地元の人との会話を楽しむいいきっかけになる。</p>
+</div>
+
+<!-- ===================== EXTRA ===================== -->
+<h2 class="section-title" id="extra">🎡 番外編</h2>
+<p class="section-sub">知ってると地味にウケる話</p>
+
+<div class="card">
+  <h3>毎年秋の「グース・フェア」</h3>
+  <p>10月初旬に開催される「Goose Fair」は700年以上の歴史を持つ移動遊園地イベント。元々はガチョウの市場だったのが、現在は絶叫マシンが立ち並ぶ大規模な祭りに発展している。</p>
 </div>
 
 <div class="card">
-  <h2>世界初のフリスビー的競技の街…ではないけど</h2>
-  <p>アルティメットの話题で言うと残念ながらノッティンガムは発祥の地ではない（発祥はアメリカ）。でもイギリスのアルティメット人気は近年急上昇中で、ノッティンガムも強豪チームを抱える街の一つ。これも話のネタにどうぞ。</p>
-</div>
-
-<h2 class="section-title">🎡 番外編</h2>
-
-<div class="card">
-  <h2>毎年秋の「グース・フェア」</h2>
-  <p>10月初旬に開催される「Goose Fair（グースフェア）」は700年以上の歴史を持つ移動遊園地イベント。元々は鵝鳥（ガチョウ）の市場だったのが、今では絶叫マシンが立ち並ぶ大規模な祭りに。タイミングが合えば一見の価値あり。</p>
+  <h3>世界初のフリスビー的競技の発祥地…ではない</h3>
+  <p>アルティメットの話題で言うと残念ながらノッティンガムは発祥の地ではない（発祥は1960年代のアメリカ）。ただし近年イギリス国内のアルティメット人気は急上昇中で、ノッティンガムも強豪チームを抱える街の一つ。試合観戦のついでに話のネタにどうぞ。</p>
 </div>
 
 <div class="card">
-  <h2>ボーツ（Boots）創業の地</h2>
-  <p>イギリス全土にあるドラッグストア「Boots」はノッティンガム発祥。創業者ジェシー・ブートはここで小さな薬局を始めて、今や英国民の生活インフラレベルの存在に。お土産探しにも便利。</p>
+  <h3>映画「ロビン・フッド」の撮影地ではないことが多い</h3>
+  <p>意外にも、ハリウッド製の「ロビン・フッド」映画の多くは実際のノッティンガムではなく、イングランド南部や他のロケ地で撮影されることが多い。地元では「うちで撮ってほしい」という声も根強い、という小ネタ。</p>
 </div>
+
+<div class="toc-back"><a href="#robinhood">▲ 目次トップへ戻る</a></div>
 
 </main>
 
 <footer>
   友人のアルティメット応援、頑張ってな！🥏<br>
-  このページは観戦の合間の話のネタ用に作りました。
+  このページは観戦の合間の話のネタ用に作成しました。
+  <div class="small">最終更新: 2026年6月 ｜ 個人制作の非公式トリビアガイドです</div>
 </footer>
 
 </body>
